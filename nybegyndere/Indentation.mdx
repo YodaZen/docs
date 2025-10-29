@@ -1,5 +1,5 @@
 ---
-title: 'Indentation'
+title: "Indentation"
 description: ''
 ---
 
@@ -25,30 +25,23 @@ Linjer, der **ikke slutter med `:`**, behøver **ikke indrykning**, medmindre de
 
 **1. Condition uden `:` (ingen blok)**
 
-{% code title="join.sk" lineNumbers="true" %}
-
-```applescript
+```typescript
 on join:
     {test} is set
     broadcast "test"
 ```
 
-{% endcode %}
-
 Her behøver `{test} is set` og `broadcast "test"` ikke yderligere indrykning, da der ikke er nogen blok under `{test} is set`.
 
 **2. Condition med blok**
 
-{% code title="join.sk" lineNumbers="true" %}
-
-```applescript
+```typescript
 on join:
     if player has permission "vip":
         send "Velkommen VIP!" to player
         give 5 of diamond to player
 ```
 
-{% endcode %}
 
 Her indrykkes linjerne **under if**, fordi `if` linjen slutter med `:` og starter en ny blok.
 
