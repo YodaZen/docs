@@ -16,7 +16,18 @@
           {
             "group": "Nybegyndere",
             "pages": [
-              "/nybegyndere/introduktion"
+              "/nybegyndere/introduktion",
+              "/nybegyndere/events",
+              "/nybegyndere/conditions",
+              "/nybegyndere/expressions",
+              "/nybegyndere/effects",
+              "/nybegyndere/Indentation",
+              "/nybegyndere/Variables",
+              "/nybegyndere/Datatypes",
+              "/nybegyndere/Commands",
+              "/nybegyndere/Loops",
+              "/nybegyndere/Functions",
+              "/nybegyndere/GUI"
             ]
           }
         ]
