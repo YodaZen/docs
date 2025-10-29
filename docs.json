@@ -20,30 +20,6 @@
               "quickstart",
               "development"
             ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
           }
         ]
       }
@@ -88,6 +64,10 @@
     ]
   },
   "footer": {
-    "text": "© 2025 Skript Guide — Lavet af YodaZen ❤️"
+    "text": "© 2025 Skript Guide — Lavet af YodaZen ❤️",
+    "socials": {
+      "github": "https://github.com/YodaZen",
+      "discord": "https://discord.gg/skript"
+    }
   }
 }
