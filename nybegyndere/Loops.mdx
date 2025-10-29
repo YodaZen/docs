@@ -1,5 +1,108 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Loops"
 ---
 
+Loops bruges til at **gentage handlinger flere gange** eller over en liste af elementer.\
+Der findes hovedsageligt to typer loops: **normalt loop (for-each)** og **while loop**.
+
+***
+
+#### 1. Normalt loop (for-each)
+
+**Formål:** Gentag handlinger for hvert element i en liste eller et bestemt antal gange.
+
+**Loop over en liste**
+
+```applescript
+set {players::*} to all players
+loop {players::*}:
+    send "Hej %loop-value%!" to loop-value
+```
+
+{% endcode %}
+
+* `{players::*}` → listen med elementer
+* `loop {players::*}:` → starter loopet
+* `loop-value`→ hver element (spiller) i listen i den aktuelle iteration
+* Indrykning **er påkrævet** under `:`
+
+**Loop et bestemt antal gange**
+
+{% code lineNumbers="true" %}
+
+```applescript
+loop 5 times:
+    broadcast "Dette er loop nummer %loop-value%"
+```
+
+{% endcode %}
+
+* `loop 5 times:` → gentag 5 gange
+* `loop-index` → den aktuelle iteration (starter på 1)
+
+***
+
+#### 2. While loop
+
+**Formål:** Gentag handlinger, så længe en condition er sand.
+
+> **Vigtigt:** Du skal **altid bruge `wait`** i et while-loop for at undgå at fryse serveren.
+
+```typescript
+set {_counter} to 0
+while {_counter} <= 5:
+    broadcast "Tæller: %{_counter} ? 0%"
+    add 1 to {_counter}
+    wait 1 seconds
+```
+
+{% endcode %}
+
+* `while {_counter} <= 5:` → fortsæt så længe conditionen er sand
+* Husk at **opdatere counteren inde i loopet**, ellers kan det blive en uendelig loop
+* Indrykning **er påkrævet** under `:`
+* `wait 1 second` → sikrer, at loopet kører på flere ticks og ikke fryser serveren
+
+**Eksempel med condition inde i while-loop**
+
+```typescript
+set {_counter} to 1
+
+while {_counter} <= 5:
+    if {_counter} is 3:
+        broadcast "Tredje iteration!"
+    add 1 to {_counter}
+    wait 1 seconds
+```
+
+{% endcode %}
+
+***
+
+#### 3. Eksempel med spillerdata og UUID
+
+```typescript
+# Giv alle spillere 5 coins med for-each loop
+loop all players:
+    add 5 to {playerData::%loop-player's uuid%::coins}
+    send "Du har nu %{playerData::%loop-player's uuid%::coins} ? 0% coins" to loop-player
+
+# Mens loop eksempel
+set {_counter} to 1
+while {_counter} < size of all players:
+    send "Iteration %{_counter} ? 0%" to player
+    add 1 to {_counter}
+    wait 1 tick
+```
+
+{% endcode %}
+
+***
+
+#### Tips og best practices
+
+* Husk altid **`:` efter loop-linjen** og indrykning af alt indenfor loopet.
+* Brug `loop-index` eller en counter-variabel til at holde styr på iterationer.
+* **While loops skal altid have `wait`** for at undgå at fryse serveren.
+* Loops kan kombineres med conditions for at udføre handlinger kun under bestemte betingelser.
+* For-each loops er ideelle til at iterere over lister som spillere, items eller variabler.

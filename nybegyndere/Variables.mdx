@@ -1,5 +1,108 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Variables"
 ---
 
+I Skript bruges **variables** til at gemme og hente information.\
+Det kan fx være spillerdata, telestatistikker, midlertidige værdier eller lister med mange elementer.
+
+Når du vil vise værdien af en variable i en tekst eller string, **`skal du sætte % % rundt om`** for at få dens returnerede værdi.
+
+---
+
+#### Typer af variables og præfiks
+
+Typen af en variable bestemmes af **præfikset**:
+
+| Prefix | Type               | Beskrivelse                                                   |
+| ------ | ------------------ | ------------------------------------------------------------- |
+| `_`    | Lokal variable     | Midlertidig, kun tilgængelig i nuværende event eller funktion |
+| `-`    | Ephemeral variable | Gemmes globalt, men slettes efter server genstart             |
+| ingen  | Global variable    | Permanent og tilgængelig overalt                              |
+
+Eksempler:
+
+```typescript
+# Lokal variable
+set {_score} to 10
+send "Din score: %{_score}%" to player
+
+# Temp-global variable
+set {-lastJoin} to now
+send "Sidst logget ind: %{-lastJoin} ? "Ukendt"%" to player
+
+# Global variable
+add 1 to {totalPlayers}
+send "Antal spillere: %{totalPlayers} ? 0%" to all players
+```
+
+**Bemærk:**
+
+- `{totalPlayers} ? 0` → default-værdi bruges, hvis variablen ikke er sat.
+- Dette sikrer, at tælleren ikke nulstilles ved hver join.
+
+---
+
+#### Nested variables
+
+- Nested variables er variabler, hvor du **indsætter en anden variable i navnet**, fx:
+
+```typescript
+set {playerData.%player's uuid%.coins} to 100 
+send "Du har nu %{playerData.%player's uuid%.coins} ? 0%" to player
+```
+
+- Dette virker, men det er **dårlig praksis**, fordi:
+  - De kan **ikke loopes** effektivt
+  - Det er svært at **fjerne eller ændre på stor skala**
+  - Det giver mindre overskuelig kode
+
+#### List-variabler
+
+- Kan bruges som lokal, temp-global eller global.
+- Skrives med `::*` notation, fx `{list::*}` → hele listen.
+- Et specifikt element tilgås med `{list::index}`.
+- Index starter på **1**, men man kan også bruge expressions som key.
+
+Eksempel med spillerens UUID (Universally Unique Identifier):
+
+```typescript
+# Set coins for en specifik spiller
+set {playerData::%player's uuid%::coins} to 100 
+
+# Tilføj mere
+add 50 to {playerData::%player's uuid%::coins} 
+
+# Hent værdien
+send "Du har nu %{playerData::%player's uuid%::coins} ? 0%" to player
+
+# Vis hele listen
+send "Hele listen: %{playerData::*}%" to player
+```
+
+Forklaring:
+
+- `{playerData::*}` → hele listen med alle spilleres data
+- `{playerData::%player's uuid%::coins}` → specifikt element i listen for én spiller
+
+---
+
+#### Default-værdi med `?`
+
+- Brug `?` **`uden for {}`** for at give en default-værdi, hvis variablen ikke findes.
+- Dette er især vigtigt for tællere og list-elementer:
+
+```typescript
+send "%{totalPlayers} ? 0%" to player
+send "%{playerData::%player's uuid%::coins} ? 0%" to player
+```
+
+---
+
+#### Tips og best practices
+
+- Brug `{_lokal}` til midlertidige variabler, som kun skal bruges i et event.
+- Brug `{-temp-global}` til værdier, der skal gemmes globalt, men ikke permanent.
+- Brug `{global}` til værdier, der skal gemmes permanent.
+- List-variabler er ideelle til spillerdata, inventories, statistik osv.
+- Husk altid `% %` i strings for at vise værdien.
+- Brug `?` til at undgå fejl, hvis variable ikke er sat endnu.
