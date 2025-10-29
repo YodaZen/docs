@@ -1,5 +1,30 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Events"
+description: "Denne side snakker om Events, hvordan de fungere og hvordan deres syntax ser ud."
 ---
 
+Et **event** er det, der **starter** en del af dit Skript. Man kan sige, at et event **fortæller Skript hvornår noget skal ske**.
+
+For eksempel:
+
+- Når en spiller joiner serveren
+- Når en spiller skriver i chatten
+- Når en spiller klikker på et item
+- Når et dyr dør
+
+Et event defineres altid med `on ...:` Alt hvad der skal ske, **skrives indrykket nedenunder**.
+
+Eksempel:
+
+[join.sk](http://join.sk)
+
+Copy
+
+```
+on join:
+    send "Velkommen til serveren!" to player
+```
+
+I dette eksempel bliver beskeden kun sendt, **når eventet "on join" sker** — altså når en spiller joiner.
+
+Events er grundstenen i Skript, fordi _intet_ sker uden et event. De fortæller Skript _hvornår_ noget skal ske — og resten af koden bestemmer _hvad_ der skal ske.
