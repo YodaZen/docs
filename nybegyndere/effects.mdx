@@ -1,5 +1,33 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Effects"
 ---
 
+En **effect** er den **handling**, som Skript skal udføre. Hvor **events** fortæller _hvornår_ noget sker, og **conditions** tjekker _om_ det skal ske, så fortæller **effects** _hvad_ der rent faktisk skal ske.
+
+Effekter bruges til at gøre noget i spillet — for eksempel:
+
+- Sende en besked
+- Give et item
+- Teleportere en spiller
+- Sætte vejr, tid eller gamemode
+
+Ofte bruger effects **expressions** til at hente værdier eller informationer, som de skal arbejde med. Eksempelvis `%player%` for spilleren, `%player's balance%` for spillerens penge eller `{spawn::location}` for en gemt lokation.
+
+Eksempel:
+
+[join.sk](http://join.sk)
+
+Copy
+
+```
+on join:
+    send "Velkommen til serveren!" to player
+    give 1 of diamond to player
+```
+
+I dette eksempel sker der to **effects**:
+
+1. Skript **sender** en besked til spilleren
+2. Skript **giver** spilleren en diamant
+
+Effekter er altså **handlinger**, og de kan kun udføres, når Skript ved _hvornår_ de skal ske (via et event) og _om_ de skal ske (via en condition).

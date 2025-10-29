@@ -1,5 +1,62 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Conditions"
 ---
 
+En **condition** bruges til at tjekke, om noget er sandt eller falsk. Man kan sige, at en condition **stiller et spørgsmål** til spillet. Hvis svaret er ja (_true_), udføres koden nedenunder. Hvis svaret er nej (_false_), bliver denne sektion sprunget over, og Skript fortsætter med næste del af koden.
+
+---
+
+#### **Eksempler**
+
+**1. Enkel condition**
+
+```typescript
+on join:
+    if player has permission "vip":
+        send "Velkommen tilbage, VIP!" to player
+```
+
+- Her bruges der `:` efter condition, hvilket betyder at alt i dens blok er [indrykket](/nybegyndere/Indentation).
+
+**2. Condition med else**
+
+```typescript
+on join:
+    if player has permission "vip":
+        send "Velkommen tilbage, VIP!" to player
+    else:
+        send "Velkommen til serveren!" to player
+```
+
+- Linjer under `if` og `else` er [indrykket](/nybegyndere/Indentation), fordi `:` skaber en blok.
+
+**3. Flere betingelser**
+
+```typescript
+on join:
+    if player has permission "vip":
+        send "Velkommen tilbage, VIP!" to player
+    else if player has permission "spiller":
+        send "Velkommen tilbage, Spiller!" to player
+    else:
+        send "Velkommen til serveren!" to player
+```
+
+**4. Enkel condition uden blok**
+
+```typescript
+on join:
+    player has permission "vip"
+    send "Velkommen tilbage, VIP!" to player
+```
+
+- Her bruges der ikke `:` efter condition, hvilket fjerner muligheden for at bruge `else if` & `else`.
+
+---
+
+#### **Vigtige pointer**
+
+- Hvis du vil lave en **sektion med flere linjer**, skal condition slutte med `:` → så kan du indrykke alle linjer, der hører til.
+- Du kan også skrive **enkle statements uden blok**, hvor `:` bruges, men kun på én linje.
+- Conditions bruges typisk sammen med `if`, `else if` og `else`.
+- De gør dine scripts **intelligente**, så de kun udfører handlinger, når bestemte ting er sande.

@@ -1,5 +1,29 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: "Expressions"
 ---
 
+En **expression** er en **værdi eller information**, som Skript kan bruge eller tjekke. Det kan fx være spillerens navn, lokation, balance, sundhed eller meget andet.
+
+Hvis du vil vise en expression i en tekst, \*\*skal du sætte \*\*`% %`\*\*rundt om for at få dens \*\* returnerede **værdi**.
+
+---
+
+#### **Eksempel**
+
+```typescript
+send "%player's name% befinder sig i %player's world%" to all players
+```
+
+Her bruges tre expressions:
+
+- `%player's name%` → spillernes navn
+- `%player's world%` → verdenen de befinder sig i
+- `all players` → alle online spillere
+
+---
+
+#### **Hvor kan expressions bruges?**
+
+- **I beskeder:** som vist i eksemplet ovenfor
+- **I conditions:** fx `if player’s health is less than 10:`
+- **I effekter:** fx `teleport player to {spawn::location}`
