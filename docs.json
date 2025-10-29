@@ -16,9 +16,7 @@
           {
             "group": "Nybegyndere",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "introduktion"
             ]
           }
         ]
