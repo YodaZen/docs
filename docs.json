@@ -11,10 +11,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Nybegyndere",
         "groups": [
           {
-            "group": "Nybegyndere",
+            "group": "Overblik",
             "pages": [
               "/nybegyndere/introduktion",
               "/nybegyndere/events",
