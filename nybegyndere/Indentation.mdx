@@ -1,5 +1,61 @@
 ---
-title: 'New file'
-description: 'Description of your new file.'
+title: 'Indentation'
+description: ''
 ---
 
+I Skript er **indrykning** vigtig, fordi den fortæller Skript **hvilke linjer der hører til en blok**.\
+En blok starter altid efter en linje, der slutter med `:` (fx events, conditions, loops).
+
+Linjer, der **ikke slutter med `:`**, behøver **ikke indrykning**, medmindre det hjælper med læsbarheden.
+
+***
+
+#### Grundregler for indrykning
+
+* Brug **2-4 mellemrum** til hvert niveau (vælg én metode og hold det konsekvent).
+* Indrykning er kun nødvendig **efter linjer med `:`**, fx:
+  * `on join:`
+  * `if player has permission "vip":`
+  * `while loop:`
+* Linjer uden `:` behøver ikke indrykkes, men du kan gøre det for overskuelighed.
+
+***
+
+#### Eksempler
+
+**1. Condition uden `:` (ingen blok)**
+
+{% code title="join.sk" lineNumbers="true" %}
+
+```applescript
+on join:
+    {test} is set
+    broadcast "test"
+```
+
+{% endcode %}
+
+Her behøver `{test} is set` og `broadcast "test"` ikke yderligere indrykning, da der ikke er nogen blok under `{test} is set`.
+
+**2. Condition med blok**
+
+{% code title="join.sk" lineNumbers="true" %}
+
+```applescript
+on join:
+    if player has permission "vip":
+        send "Velkommen VIP!" to player
+        give 5 of diamond to player
+```
+
+{% endcode %}
+
+Her indrykkes linjerne **under if**, fordi `if` linjen slutter med `:` og starter en ny blok.
+
+***
+
+#### Tips
+
+* Tænk på indrykning som **blokke**: alt der hører til en linje med `:` skal indrykkes.
+* Koden bliver mere **overskuelig og læsbar**, selvom Skript teknisk kan fungere uden indrykning på enkelte linjer.
+* Fejl i indrykning opstår typisk, når man glemmer at indrykke efter `:`.
